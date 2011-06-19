@@ -15,35 +15,21 @@
  */
 package com.quietlycoding.android.picker;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 
-public class Picker extends Activity {
+public class PickerPreferences extends PreferenceActivity {
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.picker_menu, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.menu_preferences_item:
-            startActivity(new Intent(this, PickerPreferences.class));
-            return true;
-        }
         
-        return false;
+        PreferenceManager preferenceManager = getPreferenceManager();
+        preferenceManager.setSharedPreferencesName("picker.preferences");
+        preferenceManager.setSharedPreferencesMode(MODE_PRIVATE);
+        
+        addPreferencesFromResource(R.xml.preferences);
     }
 }
+

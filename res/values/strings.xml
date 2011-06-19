@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Picker</string>
+    <string name="app_name">Number Picker</string>
+    <string name="menu_preferences_label">Preferences</string>
 </resources>
