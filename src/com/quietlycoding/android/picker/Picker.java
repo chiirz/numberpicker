@@ -18,10 +18,11 @@ package com.quietlycoding.android.picker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Picker extends Activity {
+public class Picker extends Activity implements NumberPickerDialog.OnNumberSetListener {
 
     /** Called when the activity is first created. */
     @Override
@@ -42,8 +43,18 @@ public class Picker extends Activity {
         case R.id.menu_preferences_item:
             startActivity(new Intent(this, PickerPreferences.class));
             return true;
+        case R.id.menu_dialog_item:
+            NumberPickerDialog dialog = new NumberPickerDialog(this, -1, 5);
+            dialog.setTitle(getString(R.string.dialog_picker_title));
+            dialog.setOnNumberSetListener(this);
+            dialog.show();
+            return true;
         }
         
         return false;
+    }
+
+    public void onNumberSet(int number) {
+        Log.d("NumberPicker", "Number selected: " + number);
     }
 }
